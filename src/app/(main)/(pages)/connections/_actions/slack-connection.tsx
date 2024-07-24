@@ -1,7 +1,7 @@
 
 'use server'
 
-import { Option } from '@/components/ui/multiple-selector'
+import { Option } from '@/components/ui/mutliple-selector'
 import { db } from '@/lib/db'
 import { currentUser } from '@clerk/nextjs'
 import axios from 'axios'
@@ -128,3 +128,7 @@ export const postMessageToSlack = async (
 
   return { message: 'Success' }
 }
+
+
+
+

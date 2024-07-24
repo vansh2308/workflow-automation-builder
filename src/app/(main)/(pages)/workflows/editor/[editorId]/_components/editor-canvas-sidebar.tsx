@@ -14,9 +14,10 @@ import React, { useEffect } from 'react'
 import EditorCanvasIconHelper from './editor-canvas-card-icon-helper'
 import { CONNECTIONS, EditorCanvasDefaultCardTypes } from '@/lib/constant'
 import { Separator } from '@/components/ui/separator'
-import { onConnections, onDragStart } from '@/lib/editor-utils'
+import { fetchBotSlackChannels, onConnections, onDragStart } from '@/lib/editor-utils'
 import RenderConnectionAccordion from './render-connection-accordion'
 import { useFuzzieStore } from '@/store'
+import RenderOutputAccordion from './render-output-accordion'
 
 type Props = {
     nodes: EditorNodeType[]
@@ -33,14 +34,14 @@ const EditorCanvasSidebar = ({ nodes }: Props) => {
     }
   }, [state])
 
-//   useEffect(() => {
-//     if (nodeConnection.slackNode.slackAccessToken) {
-//       fetchBotSlackChannels(
-//         nodeConnection.slackNode.slackAccessToken,
-//         setSlackChannels
-//       )
-//     }
-//   }, [nodeConnection])
+  useEffect(() => {
+    if (nodeConnection.slackNode.slackAccessToken) {
+      fetchBotSlackChannels(
+        nodeConnection.slackNode.slackAccessToken,
+        setSlackChannels
+      )
+    }
+  }, [nodeConnection])
 
     return (
         <aside>
@@ -115,10 +116,10 @@ const EditorCanvasSidebar = ({ nodes }: Props) => {
                             <AccordionTrigger className="!no-underline">
                                 Action
                             </AccordionTrigger>
-                            {/* <RenderOutputAccordion
+                            <RenderOutputAccordion
                                 state={state}
                                 nodeConnection={nodeConnection}
-                            /> */}
+                            />
                         </AccordionItem>
                     </Accordion>
                 </TabsContent>
